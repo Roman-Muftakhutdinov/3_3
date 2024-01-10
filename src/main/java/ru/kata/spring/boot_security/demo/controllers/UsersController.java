@@ -1,6 +1,5 @@
 package ru.kata.spring.boot_security.demo.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.kata.spring.boot_security.demo.entities.Role;
 import ru.kata.spring.boot_security.demo.entities.User;
-import ru.kata.spring.boot_security.demo.repositories.RoleRepository;
+import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import javax.validation.Valid;
@@ -23,11 +22,11 @@ import java.util.List;
 @Controller
 public class UsersController {
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleService roleService;
     private final UserService userService;
 
-    public UsersController(UserService userService) {
+    public UsersController(RoleService roleService, UserService userService) {
+        this.roleService = roleService;
         this.userService = userService;
     }
 
@@ -53,7 +52,7 @@ public class UsersController {
     public String newPerson(Model model) {
         User user = new User();
         model.addAttribute("user", user);
-        List<Role> roles =  roleRepository.findAll();//(List<Role>)
+        List<Role> roles =  roleService.findAll();//(List<Role>)
         model.addAttribute("allRoles", roles);
         return "new";
     }

@@ -2,10 +2,7 @@ package ru.kata.spring.boot_security.demo.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,28 +22,23 @@ public class User implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private long id;
 
     @NotEmpty(message = "el nombre no puede estar vacio")
     @Size(min = 2, max = 30, message = "el nombre debe ser de 2 a 30")
-    @Column(name = "username")
     private String username;
 
     @NotEmpty(message = "el nombre no puede estar vacio")
     @Size(min = 2, max = 30, message = "el nombre debe ser de 2 a 30")
-    @Column(name = "surname")
     private String surname;
 
     @Min(value = 0, message = "debe tener más de 0 años")
-    @Column(name = "age")
     private int age;
 
-    @Column
     @NotEmpty
     private String password;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
