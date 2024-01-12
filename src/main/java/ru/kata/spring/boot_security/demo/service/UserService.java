@@ -14,6 +14,6 @@ public interface UserService extends UserDetailsService {
 
     void save(User user);
 
-    User saveAndFlush(User user);
+    void saveAndFlush(User user);
     User findByUsername(String username);
 }
