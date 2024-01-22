@@ -20,6 +20,6 @@ public class UsersController {
     public String pageUser(Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", userService.show(user.getId()));
-        return "show";
+        return "user";
     }
 }

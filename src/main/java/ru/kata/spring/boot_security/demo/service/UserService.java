@@ -16,4 +16,5 @@ public interface UserService extends UserDetailsService {
 
     void saveAndFlush(User user);
     User findByUsername(String username);
+    User getById(Long id);
 }

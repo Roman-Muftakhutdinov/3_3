@@ -18,7 +18,7 @@ import java.util.HashSet;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails{
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,12 +46,21 @@ public class User implements UserDetails{
 
     public User() { }
 
-    public User(long id, String username, String surname, int age, String password) {
+/*    public User(long id, String username, String surname, int age, String password) {
         this.id = id;
         this.username = username;
         this.surname = surname;
         this.age = age;
         this.password = password;
+    }*/
+
+    public User(long id, String username, String surname, int age, String password, Collection<Role> roles) {
+        this.id = id;
+        this.username = username;
+        this.surname = surname;
+        this.age = age;
+        this.password = password;
+        this.roles = roles;
     }
 
     public long getId() {
