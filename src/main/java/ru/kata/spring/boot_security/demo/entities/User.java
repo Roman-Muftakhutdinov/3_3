@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ import java.util.HashSet;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+public class    User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,14 +46,6 @@ public class User implements UserDetails {
     private Collection<Role> roles = new HashSet<>();
 
     public User() { }
-
-/*    public User(long id, String username, String surname, int age, String password) {
-        this.id = id;
-        this.username = username;
-        this.surname = surname;
-        this.age = age;
-        this.password = password;
-    }*/
 
     public User(long id, String username, String surname, int age, String password, Collection<Role> roles) {
         this.id = id;
@@ -120,7 +113,7 @@ public class User implements UserDetails {
         return getRoles();
     }
 
-    public String getPassword() { return password; }
+    public String getPassword() { return    password; }
 
     public void setPassword(String password) {this.password = password;}
     public Collection<Role> getRoles() {
@@ -140,5 +133,4 @@ public class User implements UserDetails {
                 ", age=" + age +
                 '}';
     }
-
 }

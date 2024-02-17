@@ -1,0 +1,170 @@
+<tr th:each="user : ${users}">
+                            <td th:text="${user.getId()}"></td>
+                            <td th:text="${user.getUsername()}"></td>
+                            <td th:text="${user.getSurname()}"></td>
+                            <td th:text="${user.getAge()}"></td>
+                            <td th:text="${user.getRoles()}"></td>
+                            <td>
+                                <button id="btnEdit" type="button" class="btn btn-info" data-toggle="modal"
+                                        th:data-target="${'#edituser'+user.id}">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        th:data-target="${'#deleteuser'+user.id}">
+                                    Delete
+                                </button>
+                            </td>
+                            <!--Создание модального окна для редактирования пользователя начало-->
+                            <div class="modal fade" th:id="${'edituser'+user.id}" tabindex="-1"
+                                 role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editModalLabel">Edit User</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <!--  Тело окна значения данных пользователя начало-->
+                                        <form th:method="PATCH"
+                                              th:action="@{/admin/{id} (id=${user.getId()})}"
+                                              th:object="${user}">
+
+                                            <div class="modal-body text-center font-weight-bold">
+                                                <div class="form-group">
+                                                    <label for="edit-id">id: </label>
+                                                    <input type="text" class="form-control" placeholder="Enter id"
+                                                           th:value="*{id}" id="edit-id"
+                                                           th:name="id" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="edit-username">Username: </label>
+                                                    <!--    <input type="text" class="form-control " placeholder="Enter username"
+                                                               field="*{username}" name="username" id="username">-->
+                                                    <input type="text" class="form-control "
+                                                           placeholder="Enter username"
+                                                           th:value="*{username}" id="edit-username"
+                                                           th:name="username">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="edit-surname">Surname: </label>
+                                                    <input type="text" class="form-control" placeholder="Enter surname"
+                                                           th:value="*{surname}" id="edit-surname"
+                                                           th:name="surname">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="edit-age">Age: </label>
+                                                    <input type="number" class="form-control" placeholder="Enter age"
+                                                           th:value="*{age}" id="edit-age"
+                                                           th:name="age">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="edit-password">Password: </label>
+                                                    <input type="password" class="form-control" placeholder="Password"
+                                                           th:value="*{password}" id="edit-password"
+                                                           th:name="password">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="edit-roles">Roles</label>
+                                                    <select th:name="roles" id="edit-roles"
+                                                            class="form-control" multiple size="2">
+                                                        <option th:each="role : ${allRoles}"
+                                                                th:text="${role.toString()}"
+                                                                th:value="${role.id}"
+                                                                th:selected="${role}">
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <!--  Тело окна, здесь все поля заполняться должны значениями данных пользователя конец-->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">Edit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Создание модального окна для редактирования пользователя конец-->
+                            <!--Создание модального окна для удаления пользователя начало-->
+                            <div class="modal fade" th:id="${'deleteuser' + user.getId()}" tabindex="-1"
+                                 role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel">Delete User</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <!--                                        Форма для удаления пользователя начало-->
+                                        <form th:method="DELETE"
+                                              th:action="@{/admin/{id} (id=${user.getId()})}"
+                                              th:object="${user}">
+
+                                            <div class="modal-body text-center font-weight-bold">
+                                                <div class="form-group">
+                                                    <label for="delete-id">id: </label>
+                                                    <input type="text" class="form-control" placeholder="Enter id"
+                                                           th:value="*{id}" id="delete-id"
+                                                           th:name="id" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="edit-username">Username: </label>
+                                                    <!--    <input type="text" class="form-control " placeholder="Enter username"
+                                                               field="*{username}" name="username" id="username">-->
+                                                    <input type="text" class="form-control "
+                                                           placeholder="Enter username"
+                                                           th:value="*{username}" id="delete-username"
+                                                           th:name="username" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="edit-surname">Surname: </label>
+                                                    <input type="text" class="form-control" placeholder="Enter surname"
+                                                           th:value="*{surname}" id="delete-surname"
+                                                           th:name="surname" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="edit-age">Age: </label>
+                                                    <input type="number" class="form-control" placeholder="Enter age"
+                                                           th:value="*{age}" id="delete-age"
+                                                           th:name="age" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="edit-password">Password: </label>
+                                                    <input type="password" class="form-control" placeholder="Password"
+                                                           th:value="*{password}" id="delete-password"
+                                                           th:name="password" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="edit-roles">Roles</label>
+                                                    <select th:name="roles" id="delete-roles"
+                                                            class="form-control" multiple size="2">
+                                                        <option th:each="role : ${user.getRoles()}"
+                                                                th:text="${role.toString()}"
+                                                                th:value="${role.id}"
+                                                                th:selected="${role}" disabled>
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <!--  Тело окна, здесь все поля заполняться должны значениями данных пользователя конец-->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">Delete</button>
+                                            </div>
+                                        </form>
+                                        <!--                                        Форма для удаления пользователя конец-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Создание модального окна для удаления пользователя конец-->
+                        </tr>

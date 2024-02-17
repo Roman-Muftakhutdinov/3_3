@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.kata</groupId>
-	<artifactId>Boorstrap</artifactId>
+	<artifactId>REST</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot_security-demo</name>
 	<description>Demo project for Spring Boot</description>
@@ -84,6 +84,13 @@
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 			<version>3.0.4.RELEASE</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.14.2</version>
+		</dependency>
+
 
 	</dependencies>
 

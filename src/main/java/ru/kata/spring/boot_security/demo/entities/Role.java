@@ -18,6 +18,11 @@ public class Role implements GrantedAuthority {
     public Role() {
     }
 
+    public Role(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Role(String name) {
         this.name = name;
     }
@@ -30,11 +35,7 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
-    public String getName() {
-//        String nameWithoutRole = name.replace("ROLE_", "");
-//        return nameWithoutRole;
-        return name;
-    }
+    public String getName() { return name; }
 
     public void setName(String name) {
         this.name = name;
@@ -74,8 +75,6 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-//        String nameWithoutRole = name.replace("ROLE_", "");
-//        return nameWithoutRole;
         return getName();
     }
 }
