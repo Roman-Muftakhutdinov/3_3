@@ -51,20 +51,6 @@ public class AdminController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> show(@PathVariable Long id) {
-         User user = userService.findById(id).get();
-
-         if (user == null) {
-             throw  new NoSuchUserException("User with ID" + id + "not found in DB");
-         }
-
-         return user != null
-                 ? new ResponseEntity<>(user,HttpStatus.OK)
-                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-
     @PostMapping
     public ResponseEntity<User> add(@RequestBody User user)  {
         userService.save(user);
