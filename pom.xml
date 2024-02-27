@@ -16,7 +16,7 @@
 	<properties>
 		<java.version>11</java.version>
 
-		<mysql-connector-j.version>8.0.31</mysql-connector-j.version>
+		<mysql-connector-j.version>8.3.0</mysql-connector-j.version>
 		<hibernate-validator.version>6.0.20.Final</hibernate-validator.version>
 	</properties>
 	<dependencies>
