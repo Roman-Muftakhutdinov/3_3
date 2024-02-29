@@ -9,6 +9,7 @@ import ru.kata.spring.boot_security.demo.entities.Role;
 import ru.kata.spring.boot_security.demo.entities.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
+import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,10 +20,10 @@ import java.util.Set;
 public class InitDB implements ApplicationListener<ContextRefreshedEvent> {
 
     private RoleService roleService;
-    private UserService userService;
+    private UserServiceImpl userService;
     private PasswordEncoder passwordEncoder;
 
-    public InitDB(RoleService roleService, UserService userService, PasswordEncoder passwordEncoder) {
+    public InitDB(RoleService roleService, UserServiceImpl userService, PasswordEncoder passwordEncoder) {
         this.roleService = roleService;
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;

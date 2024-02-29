@@ -46,7 +46,7 @@
                 </li>
                 <li class="nav item nav-fill">
                     <a class="nav-link text-left" aria-selected="false" href="/user"
-                       sec:authorize="hasRole('ROLE_USER')"
+                       sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"
                         id="userLeftPanel"
                     >User</a>
                 </li>
