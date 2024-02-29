@@ -46,14 +46,16 @@ public class InitDB implements ApplicationListener<ContextRefreshedEvent> {
         admin.setUsername("admin");
         admin.setSurname("adminov");
         admin.setAge(33);
-        admin.setPassword(passwordEncoder.encode("200"));
+        admin.setPassword("200");
         admin.setRoles(adminRoles);
 
         User user = new User();
         user.setUsername("user");
         user.setSurname("userov");
         user.setAge(35);
-        user.setPassword(passwordEncoder.encode("user"));
+        user.setPassword("user");
+//        user.setPassword(passwordEncoder.encode("user"));
+
         user.setRoles(userRoles);
 
         userService.save(admin);
